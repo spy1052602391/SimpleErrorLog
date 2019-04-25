@@ -1,0 +1,31 @@
+
+
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        Map<String,Integer> map = new LinkedHashMap<>();
+        while(sc.hasNext()){
+            String str = sc.next();
+            int num = sc.nextInt();
+            String[] strings = str.split("\\\\");
+            String result = strings[strings.length-1];
+            if(result.length() > 16){
+                result = result.substring(result.length()-16);
+            }
+            result += " "+num;
+            Integer count = map.put(result,1);
+            if(count != null)
+                map.put(result,count+1);
+        }
+        int count = 0;
+        for(String string : map.keySet()){
+            count++;
+            if(count > (map.keySet().size()-8)){
+                System.out.println(string+" "+map.get(string));
+            }
+        }
+    }
+}
+
